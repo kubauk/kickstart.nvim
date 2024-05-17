@@ -966,32 +966,6 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
-  {
-    'ThePrimeagen/refactoring.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    config = function()
-      require('refactoring').setup()
-      require('telescope').load_extension 'refactoring'
-
-      vim.keymap.set('x', '<leader>re', ':Refactor extract ')
-      vim.keymap.set('x', '<leader>rf', ':Refactor extract_to_file ')
-
-      vim.keymap.set('x', '<leader>rv', ':Refactor extract_var ')
-
-      vim.keymap.set({ 'n', 'x' }, '<leader>ri', ':Refactor inline_var')
-
-      vim.keymap.set('n', '<leader>rI', ':Refactor inline_func')
-
-      vim.keymap.set('n', '<leader>rb', ':Refactor extract_block')
-      vim.keymap.set('n', '<leader>rbf', ':Refactor extract_block_to_file')
-      vim.keymap.set({ 'n', 'x' }, '<leader>rr', function()
-        require('telescope').extensions.refactoring.refactors()
-      end, { desc = 'List of refactors' })
-    end,
-  },
   { 'tpope/vim-fugitive' },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
@@ -1008,6 +982,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.refactoring',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
