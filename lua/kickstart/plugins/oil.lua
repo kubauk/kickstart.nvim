@@ -3,6 +3,8 @@ return {
   lazy = false,
   config = function()
     require('oil').setup {
+      vim.keymap.set('n', '<leader>o', '<cmd>Oil<CR>', { desc = 'Open [O]il directory editor' }),
+
       -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
       -- Set to false if you still want to use netrw.
       default_file_explorer = true,
