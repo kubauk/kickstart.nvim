@@ -2,4 +2,9 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+  require 'kickstart.plugins.refactoring',
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.oil',
+  require 'kickstart.plugins.lualine',
+}
