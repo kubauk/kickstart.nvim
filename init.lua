@@ -110,7 +110,7 @@ vim.opt.number = true
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
 
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '120'
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -442,6 +442,12 @@ require('lazy').setup({
           previewer = false,
         }
       end, { desc = '[S]earch all e[X]tended files' })
+      vim.keymap.set('n', '<leader>sa', function()
+        builtin.find_files {
+          find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', '-u' },
+          previewer = false,
+        }
+      end, { desc = '[S]earch [A]ll files' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -465,6 +471,11 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      vim.keymap.set('n', '<leader>cs', builtin.git_status, { desc = 'Git [S]tatus' })
+      vim.keymap.set('n', '<leader>cc', builtin.git_commits, { desc = 'Git [C]ommits' })
+      vim.keymap.set('n', '<leader>cb', builtin.git_branches, { desc = 'Git [B]ranches' })
+      vim.keymap.set('n', '<leader>cq', builtin.quickfix, { desc = '[Q]uick fix' })
     end,
   },
 
@@ -703,6 +714,14 @@ require('lazy').setup({
               -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
+        },
+
+        vacuum = {},
+      }
+
+      vim.filetype.add {
+        pattern = {
+          ['openapi.yaml'] = 'yaml.openapi',
         },
       }
 

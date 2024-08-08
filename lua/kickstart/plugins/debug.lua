@@ -110,13 +110,35 @@ return {
       },
     }
 
-    require('dap').configurations.javascript = {
+    if not dap.adapters['node'] then
+      dap.adapters['node'] = function(cb, config)
+        if config.type == 'node' then
+          config.type = 'pwa-node'
+        end
+        local nativeAdapter = dap.adapters['pwa-node']
+        if type(nativeAdapter) == 'function' then
+          nativeAdapter(cb, config)
+        else
+          cb(nativeAdapter)
+        end
+      end
+    end
+
+    require('dap').configurations.typescript = {
       {
         type = 'pwa-node',
         request = 'launch',
         name = 'Launch file',
         program = '${file}',
         cwd = '${workspaceFolder}',
+      },
+      {
+        type = 'pwa-node',
+        request = 'attach',
+        name = 'Debug',
+        restart = true,
+        sourceMaps = true,
+        outDir = '${workspaceFolder}/lib',
       },
     }
 
