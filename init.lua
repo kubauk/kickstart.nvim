@@ -110,7 +110,7 @@ vim.opt.number = true
 --  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
 
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '120'
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -384,12 +384,12 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-      vim.keymap.set('n', '<leader>sx', function()
+      vim.keymap.set('n', '<leader>sa', function()
         builtin.find_files {
-          find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
+          find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden', '-u' },
           previewer = false,
         }
-      end, { desc = '[S]earch all e[X]tended files' })
+      end, { desc = '[S]earch [A]ll files' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -413,6 +413,11 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      vim.keymap.set('n', '<leader>cs', builtin.git_status, { desc = 'Git [S]tatus' })
+      vim.keymap.set('n', '<leader>cc', builtin.git_commits, { desc = 'Git [C]ommits' })
+      vim.keymap.set('n', '<leader>cb', builtin.git_branches, { desc = 'Git [B]ranches' })
+      vim.keymap.set('n', '<leader>cq', builtin.quickfix, { desc = '[Q]uick fix' })
     end,
   },
 
@@ -610,6 +615,14 @@ require('lazy').setup({
             },
           },
         },
+
+        vacuum = {},
+      }
+
+      vim.filetype.add {
+        pattern = {
+          ['openapi.yaml'] = 'yaml.openapi',
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -750,6 +763,8 @@ require('lazy').setup({
           --  This will auto-import if your LSP supports it.
           --  This will expand snippets if the LSP sent a snippet.
           ['<C-y>'] = cmp.mapping.confirm { select = true },
+          ['<CR>'] = cmp.mapping.confirm { select = true },
+          ['<Tab>'] = cmp.mapping.confirm { select = true },
 
           -- If you prefer more traditional completion keymaps,
           -- you can uncomment the following lines
