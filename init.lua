@@ -90,7 +90,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.cmd ':command Projects cd /Users/kuba/Library/Mobile Documents/com~apple~CloudDocs/src/'
+vim.cmd ':command Beancount cd /Users/kuba/Documents/PyProjects/Beancount'
 vim.cmd ':command Code cd /Users/kuba/Google Drive/My Drive/src'
 vim.cmd ':command Drive cd /Users/kuba/Google Drive/My Drive'
 vim.cmd ':command Payouts cd /Users/kuba/Google Drive/My Drive/src/payouts/'
