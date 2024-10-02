@@ -124,23 +124,23 @@ return {
       end
     end
 
-    require('dap').configurations.typescript = {
-      {
-        type = 'pwa-node',
-        request = 'launch',
-        name = 'Launch file',
-        program = '${file}',
-        cwd = '${workspaceFolder}',
-      },
-      {
-        type = 'pwa-node',
-        request = 'attach',
-        name = 'Debug',
-        restart = true,
-        sourceMaps = true,
-        outDir = '${workspaceFolder}/lib',
-      },
-    }
+    -- require('dap').configurations.typescript = {
+    --   {
+    --     type = 'pwa-node',
+    --     request = 'launch',
+    --     name = 'Launch file',
+    --     program = '${file}',
+    --     cwd = '${workspaceFolder}',
+    --   },
+    --   {
+    --     type = 'pwa-node',
+    --     request = 'attach',
+    --     name = 'Debug',
+    --     restart = true,
+    --     sourceMaps = true,
+    --     outDir = '${workspaceFolder}/lib',
+    --   },
+    -- }
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
