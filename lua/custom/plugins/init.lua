@@ -7,5 +7,5 @@ return {
   require 'kickstart.plugins.debug',
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.lualine',
-  require 'kickstart.plugins.beancount',
+  --  require 'kickstart.plugins.beancount',
 }
