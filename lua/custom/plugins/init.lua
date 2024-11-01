@@ -8,4 +8,5 @@ return {
   require 'kickstart.plugins.oil',
   require 'kickstart.plugins.lualine',
   --  require 'kickstart.plugins.beancount',
+  require 'custom.plugins.gitlab',
 }
