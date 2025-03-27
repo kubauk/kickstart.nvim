@@ -91,10 +91,9 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 vim.cmd ':command Beancount cd /Users/kuba/Documents/PyProjects/Beancount'
-vim.cmd ':command Code cd /Users/kuba/Google Drive/My Drive/src'
-vim.cmd ':command Drive cd /Users/kuba/Google Drive/My Drive'
-vim.cmd ':command Payouts cd /Users/kuba/Google Drive/My Drive/src/payouts/'
-vim.cmd ':command Review cd /Users/kuba/Google Drive/My Drive/src/code-review/'
+vim.cmd ':command Code cd /Users/kuba/src'
+vim.cmd ':command Payouts cd /Users/kuba/src/payouts/'
+vim.cmd ':command Review cd /Users/kuba/src/code-review/'
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
