@@ -90,6 +90,11 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.cmd ':command Projects cd /Users/kuba/Library/Mobile Documents/com~apple~CloudDocs/src/'
+vim.cmd ':command Code cd /Users/kuba/Google Drive/My Drive/src'
+vim.cmd ':command Payouts cd /Users/kuba/Google Drive/My Drive/src/payouts/'
+vim.cmd ':command Review cd /Users/kuba/Google Drive/My Drive/src/code-review/'
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
@@ -102,7 +107,7 @@ vim.g.have_nerd_font = false
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -428,6 +433,12 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sx', function()
+        builtin.find_files {
+          find_command = { 'rg', '--files', '--iglob', '!.git', '--hidden' },
+          previewer = false,
+        }
+      end, { desc = '[S]earch all e[X]tended files' })
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()
@@ -673,7 +684,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -955,7 +966,33 @@ require('lazy').setup({
     --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
     --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   },
+  {
+    'ThePrimeagen/refactoring.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('refactoring').setup()
+      require('telescope').load_extension 'refactoring'
 
+      vim.keymap.set('x', '<leader>re', ':Refactor extract ')
+      vim.keymap.set('x', '<leader>rf', ':Refactor extract_to_file ')
+
+      vim.keymap.set('x', '<leader>rv', ':Refactor extract_var ')
+
+      vim.keymap.set({ 'n', 'x' }, '<leader>ri', ':Refactor inline_var')
+
+      vim.keymap.set('n', '<leader>rI', ':Refactor inline_func')
+
+      vim.keymap.set('n', '<leader>rb', ':Refactor extract_block')
+      vim.keymap.set('n', '<leader>rbf', ':Refactor extract_block_to_file')
+      vim.keymap.set({ 'n', 'x' }, '<leader>rr', function()
+        require('telescope').extensions.refactoring.refactors()
+      end, { desc = 'List of refactors' })
+    end,
+  },
+  { 'tpope/vim-fugitive' },
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
