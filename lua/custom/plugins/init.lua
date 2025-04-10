@@ -11,4 +11,5 @@ return {
   require 'custom.plugins.gitlab',
   require 'custom.plugins.copilot',
   require 'custom.plugins.trouble',
+  require 'custom.plugins.typecheck',
 }
