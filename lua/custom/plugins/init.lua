@@ -5,7 +5,6 @@
 return {
   require 'kickstart.plugins.refactoring',
   require 'kickstart.plugins.lualine',
-  --  require 'kickstart.plugins.beancount',
   require 'custom.plugins.gitlab',
   require 'custom.plugins.copilot',
   require 'custom.plugins.trouble',
