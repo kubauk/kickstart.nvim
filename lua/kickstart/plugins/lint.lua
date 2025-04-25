@@ -5,8 +5,26 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       local lint = require 'lint'
+
+      local eslint_d = lint.linters.eslint_d
+
+      eslint_d.args = {
+        '.',
+        '--ext',
+        '.ts,.tsx',
+        '--format',
+        'json',
+        '--stdin',
+        '--stdin-filename',
+        function()
+          return vim.api.nvim_buf_get_name(0)
+        end,
+      }
+
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
+        typescript = { 'eslint_d' },
+        typescriptreact = { 'eslint_d' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
