@@ -3,8 +3,8 @@
 --
 -- See the kickstart.nvim README for more information
 return {
-  require 'kickstart.plugins.refactoring',
-  require 'kickstart.plugins.lualine',
+  require 'custom.plugins.refactoring',
+  require 'custom.plugins.lualine',
   require 'custom.plugins.gitlab',
   require 'custom.plugins.copilot',
   require 'custom.plugins.trouble',
