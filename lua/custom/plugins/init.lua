@@ -9,4 +9,5 @@ return {
   require 'custom.plugins.copilot',
   require 'custom.plugins.trouble',
   require 'custom.plugins.typecheck',
+  require 'custom.plugins.oil',
 }
