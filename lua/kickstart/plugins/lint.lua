@@ -7,6 +7,7 @@ return {
       local lint = require 'lint'
 
       local eslint_d = lint.linters.eslint_d
+      local markdownlint = lint.linters.markdownlint
 
       eslint_d.args = {
         '.',
@@ -20,6 +21,8 @@ return {
           return vim.api.nvim_buf_get_name(0)
         end,
       }
+
+      markdownlint.args = { '--stdin', '--disable', 'MD013' }
 
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
