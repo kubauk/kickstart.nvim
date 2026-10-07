@@ -10,6 +10,7 @@ return {
   require 'custom.plugins.trouble',
   require 'custom.plugins.typecheck',
   require 'custom.plugins.oil',
+  require 'custom.plugins.claudecode',
   {
     'RaafatTurki/hex.nvim',
     -- defaults
