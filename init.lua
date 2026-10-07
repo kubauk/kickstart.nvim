@@ -520,7 +520,22 @@ require('lazy').setup({
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
 
-      vim.keymap.set('n', '<leader>cs', builtin.git_status, { desc = 'Git [S]tatus' })
+      vim.keymap.set('n', '<leader>cs', function()
+        builtin.git_status {
+          attach_mappings = function(prompt_bufnr, map)
+            local open_diff = function()
+              local selection = action_state.get_selected_entry()
+              actions.close(prompt_bufnr)
+              vim.cmd('edit ' .. vim.fn.fnameescape(selection.value))
+              -- Use Fugitive's merge-style layout to open a 3-way diff when available.
+              vim.cmd 'Gvdiffsplit!'
+            end
+            map('i', '<D-d>', open_diff)
+            map('n', '<D-d>', open_diff)
+            return true
+          end,
+        }
+      end, { desc = 'Git [S]tatus' })
       vim.keymap.set('n', '<leader>cc', builtin.git_commits, { desc = 'Git [C]ommits' })
       vim.keymap.set('n', '<leader>cb', builtin.git_branches, { desc = 'Git [B]ranches' })
       vim.keymap.set('n', '<leader>cq', builtin.quickfix, { desc = '[Q]uick fix' })
