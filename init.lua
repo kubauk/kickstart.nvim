@@ -94,6 +94,7 @@ vim.cmd ':command Beancount cd /Users/kuba/Documents/PyProjects/Beancount'
 vim.cmd ':command Code cd /Users/kuba/src'
 vim.cmd ':command Payouts cd /Users/kuba/src/payouts/'
 vim.cmd ':command Dashboard cd /Users/kuba/src/dashboard/'
+vim.cmd ':command Settlements cd /Users/kuba/src/finance-settlements/'
 vim.cmd ':command Review cd /Users/kuba/src/code-review/'
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
