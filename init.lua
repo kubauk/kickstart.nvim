@@ -927,6 +927,17 @@ require('lazy').setup({
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'super-tab',
+        ['!'] = {
+          function(cmp)
+            return cmp.select_and_accept {
+              callback = function()
+                local keys = vim.keycode '<C-o>b!'
+                vim.api.nvim_feedkeys(keys, 'n', false)
+              end,
+            }
+          end,
+          'fallback',
+        },
 
         -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
         --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
