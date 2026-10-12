@@ -113,6 +113,8 @@ vim.o.relativenumber = true
 
 vim.opt.colorcolumn = '120'
 
+vim.o.background = 'dark'
+
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
 
